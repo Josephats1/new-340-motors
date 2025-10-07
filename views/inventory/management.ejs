@@ -1,0 +1,21 @@
+<%# Unit 4, Select Inv Item activity %>
+<% if (title) {%>
+<h1><%= title %></h1>
+<%} else {res.redirect('/')} %>
+
+<%- messages() %>
+
+
+<% if (errors) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+<ul class="boldList">
+  <li><a href="/inv/newClassification/" title="Click to add a new vehicle classification">Add New Classification</a></li>
+  <li><a href="/inv/newVehicle/" title="Click to add a new vehicle">Add New Vehicle</a></li>
+</ul>
+

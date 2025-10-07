@@ -1,0 +1,34 @@
+<%# Unit 4, deliver Register activity %>
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+<div id="registerContainer">
+  <p>All fields are required.</p>
+  <form id="registerForm" action="/account/register" method="post">
+    <fieldset>
+      <label for="firstname">First name:</label>
+      <input type="text" name="account_firstname" id="firstname" size="10" required value="<%= locals.account_firstname %>">
+      <label for="lastname">Last name:</label>
+      <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>">
+      <label for="email">Email Address:</label>
+      <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
+      <label for="password">Password:</label>
+      <input type="password" name="account_password" id="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+      <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
+      <div id="pswdBtn">Show Password</div>
+      <button type="submit">Register</button>
+    </fieldset>
+  </form>
+</div>
+<script src="/js/script.js"></script>

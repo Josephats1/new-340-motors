@@ -1,0 +1,741 @@
+/************************************************
+CSS Styles for CSE Motors
+
+1. General styles
+   1.0 @imports
+   1.1 Box Model
+   1.2 Universal Styles
+   1.3 Header
+   1.4 Navigation
+   1.5 Body
+   1.6 Footer
+2. Component styles
+    2.1 Hero - Home view
+    2.2 Review - Home view
+    2.3 Add-ons - Home view
+    2.4 Forms
+    2.5 Vehicles - Classification view
+    2.6 Vehicle - Detail view
+3. Media Query
+    3.1 General
+    3.2 Header
+    3.3 Navigation
+    3.4 Hero - Home
+    3.5 Review & Add-on - Home
+    3.6 Vehicles - Classification view
+    3.7 Vehicle - Detail view
+
+************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Literata:opsz@7..72&display=swap');
+
+/******* 1.1 Change Box Model ***************/
+/*#region*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/*#endregion*/
+/******* 1.2 Universal Styles ***************/
+/*#region*/
+
+/* Colors */
+:root {
+  --primary-text: #242333;
+  --primary-background: #fff;
+  --main-accent: #01b0d3;
+  --notification: rgb(255, 0, 17);
+  --valid: rgb(173, 243, 173);
+  --invalid: rgb(240, 200, 207);
+  --body-font: Inter;
+  --heading-font: Literata;
+  --success-background: rgb(173, 243, 173);
+  --warning-background: rgb(240, 200, 207);
+  --notice-background: yellow;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2 {
+  font-size: 1.2em;
+  font-family: var(--heading-font), serif;
+}
+
+#err {
+  margin-left: 1em;
+  list-style: none;
+}
+
+.message {
+  font-weight: bold;
+  list-style: none;
+  font-style: italic;
+  padding: 1rem;
+  color: var(--primary-text);
+}
+
+.success {
+  background-color: var(--success-background);
+}
+
+.warning {
+  background-color: var(--warning-background);
+}
+
+.notice {
+  background-color: var(--notice-background);
+}
+
+label,
+input,
+textarea,
+select {
+  display: block;
+}
+
+textarea {
+  width: min(60ch, 100%);
+  min-height: 6rem;
+}
+
+input,
+select {
+  font-size: 1.25rem;
+
+}
+
+input[type='Submit'] {
+  font-size: larger;
+  background-color: var(--main-accent);
+  margin: .5rem 0 1rem 0;
+}
+
+/*#endregion*/
+/************************************************
+   1.3 Header
+************************************************/
+/*#region*/
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+#tools {
+  font-size: 3.5vw;
+  font-variant: small-caps;
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+  
+  
+}
+
+header>img {
+  max-width: 40%;
+}
+
+header a {
+  text-decoration: none;
+  color: var(--primary-text);
+  display: inline-block;
+  padding: 2vh 0;
+}
+
+#cookie {
+  align-self: center;
+}
+
+/*#endregion*/
+/************************************************
+   1.4 Navigation
+************************************************/
+/*#region*/
+nav {
+  background-color: var(--primary-text);
+  color: var(--primary-background);
+}
+
+nav ul {
+  display: flex;
+  padding: 0 1vw;
+  justify-content: space-around;
+}
+
+nav li {
+  list-style: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+nav a {
+  color: var(--primary-background);
+  text-decoration: none;
+  font-size: .85rem;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/*#endregion*/
+/************************************************
+   1.5 body
+************************************************/
+/*#region*/
+body {
+  /* font-family: 'Share Tech Mono', sans-serif; */
+  font-family: var(--body-font), sans-serif;
+  margin: 0;
+}
+
+#wrapper {
+  width: 95%;
+  background-color: var(--primary-background);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1em;
+}
+
+.crash{
+  background-color: rgb(248, 224, 228);
+  min-height: 400px;
+  padding: 1rem;
+  background-image: url("../images/site/wreck.jpg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode:soft-light;
+  font-weight: 700;
+  font-size: x-large;
+}
+
+
+
+/*#endregion*/
+/************************************************
+   1.6 Footer
+************************************************/
+/*#region*/
+footer{
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0;
+  padding: 0;
+  font-size: .9rem;
+}
+
+hr {
+  border: 2px solid var(--primary-text);
+  margin: 0;
+}
+
+/*#endregion*/
+/************************************************
+   2. Component Styles
+***********************************************/
+
+/************************************************
+   2.1 Hero section - home view
+************************************************/
+/*#region*/
+#hero {
+  background-image: url("/images/vehicles/delorean.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+#hero h2 {
+  margin-left: 0;
+}
+
+#hero a:hover {
+  opacity: .5;
+}
+
+#hero li {
+  list-style: none;
+  color: var(--main-accent);
+
+}
+
+#hero li h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--main-accent);
+}
+
+#hero ul {
+  padding-left: 0;
+  margin-top: 0;
+  max-width: 200px;
+  margin-left: .5em;
+  margin-bottom: 2rem;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#hero li {
+  font-size: .85em;
+}
+
+#actionbtn {
+  display: inline-block;
+  max-width: 25vw;
+  max-height: 10vh;
+  padding: .5rem;
+  background-color: var(--main-accent);
+  color: var(--primary-text);
+  font-weight: 800;
+  border-radius: .25rem;
+}
+
+#actionbtn:hover {
+  opacity: .5;
+}
+
+/* For Delorian list */
+section ul {
+  padding: 0 0 0 1rem;
+}
+
+/*#endregion*/
+
+/************************************************
+   2.2 Review section - home view
+************************************************/
+/*#region*/
+#review li {
+  font-size: .9em;
+  margin-bottom: 1em;
+}
+
+
+
+/*#endregion*/
+/************************************************
+   2.3 Add-on section - home view
+************************************************/
+/*#region*/
+.flex {
+  display: flex;
+  margin-bottom: 2em;
+  justify-content: center;
+  width: 100%;
+  padding-left: .25em;
+
+}
+
+.flex a {
+  width: 100%;
+}
+
+.add-col {
+  background-color: var(--main-accent);
+  height: 5.5em;
+  width: 95%;
+  border: var(--primary-text) solid 1px;
+}
+
+a figure {
+  margin: 0;
+}
+
+figure img {
+  display: block;
+  margin: auto;
+  padding-top: .5em;
+}
+
+figure figcaption {
+  text-align: center;
+}
+
+
+
+section {
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+
+
+/*#endregion*/
+
+/************************************************
+   2.4 Forms 
+************************************************/
+/*#region*/
+label+div {
+  font-size: .7rem;
+  margin-left: .5rem;
+}
+
+input[name$='Image'],
+input[name$='Thumbnail'] {
+  width: 40ch;
+  max-width: 100%;
+}
+
+*[required]:focus:invalid {
+  background-color: var(--invalid);
+}
+
+*[required]:focus:valid {
+  background-color: var(--valid);
+  color: var(--primary-text);
+}
+
+#pswdBtn {
+  width: 9rem;
+  height: 40px;
+  padding: .75rem;
+  border: 1px solid var(--primary-text);
+  background-color: var(--primary-text);
+  color: #fff;
+  border-radius: 3px;
+}
+
+#loginContainer{
+  max-width: 25rem;
+  margin: 0 auto;
+  padding: 1rem .5rem;
+  background-color: var(--main-accent);
+  font-size: larger;
+  border-radius: .5rem;
+}
+#loginContainer p{
+text-align: center;
+  
+}
+#loginContainer a{
+  font-weight: 700;
+  color: var(--primary-text);
+}
+
+#registerContainer{
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 1rem .5rem;
+  background-color: var(--main-accent);
+  font-size: larger;
+  border-radius: .5rem;
+}
+
+#registerContainer p{
+  font-style: italic;
+  font-variant: small-caps;
+}
+#registerContainer button{
+  font-size: larger;
+  margin-top: 1rem;
+}
+
+#pswdBtn {
+  width: 12rem;
+  height: 40px;
+  padding: .5rem;
+  border: 1px solid #3a3a3a;
+  background-color: #3a3a3a;
+  color: #fff;
+  border-radius: 20px;
+}
+
+:is(fieldset) input,
+:is(fieldset) div,
+:is(fieldset) span,
+:is(fieldset) textarea,
+:is(fieldset) select{
+  margin-bottom: .75rem;
+}
+/*#endregion*/
+
+/************************************************
+   2.5 Vehicles grid - classification view
+************************************************/
+/*#region*/
+#inv-display {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display li {
+  margin-bottom: .5em;
+  border: 1px #ccc solid;
+  list-style-type: none;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+#inv-display li img {
+  object-fit: fill;
+}
+
+/*#endregion*/
+
+/************************************************
+   2.6 Vehicle  - detail view
+************************************************/
+/*#region*/
+#detail {
+  display: flex;
+  align-items: start;
+  position: relative;
+  flex-direction: column;
+}
+
+#vehicle-display img {
+  max-width: 100%;
+}
+
+#vehicle-display ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#vehicle-display li {
+  margin: 0;
+  padding: 1rem;
+}
+
+#vehicle-display h4 {
+  display: inline-block;
+  font-size: large;
+  margin: 0;
+  font-weight: 800;
+}
+
+#vehicle-display li:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+/*#endregion*/
+
+/************************************************
+   2.7 Misc 
+************************************************/
+/*#region*/
+.boldList>li{
+  font-size: larger;
+  margin-bottom: .5rem;
+  list-style: none;
+}
+
+#inventoryDisplay{
+  margin: 1rem 0;
+  font-size: large;
+}
+
+
+/*#endregion*/
+@media only screen and (min-width: 768px) {
+
+  /*******************************************
+     3.1 General
+    *******************************************/
+  /*#region*/
+  body {
+    background-image:
+      linear-gradient(45deg, #000 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #000 75%),
+      linear-gradient(45deg, transparent 75%, #000 75%),
+      linear-gradient(45deg, #000 25%, #fff 25%);
+    background-size: 100px 100px;
+    background-position: 0 0, 0 0, -50px -50px, 50px 50px;
+  }
+
+  #wrapper {
+    border: 5px solid var(--main-accent);
+    border-radius: 10px;
+    margin-top: 1rem;
+    padding: 1vw;
+    width: 75vw;
+    max-width: 1200px;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    grid-row: 1 / 1;
+    grid-column: 1 / 3;
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.2 Header
+    *******************************************/
+  /*#region*/
+
+  #tools {
+    font-size: inherit;
+  }
+
+  .acc:hover {
+    opacity: .5;
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.3 Navigation
+    ********************************************/
+  /*#region*/
+  nav {
+    margin-top: .75rem;
+  }
+
+  nav ul {
+    justify-content: space-evenly;
+    padding: .5rem 0;
+    margin: 0;
+  }
+
+  nav li {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  nav a {
+    display: inline-block;
+    width: 4.5em;
+    padding: .25rem 0;
+    font-size: 1rem;
+  }
+
+  nav a:hover {
+    color: var(--primary-text);
+    background-color: var(--primary-background);
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.4 Hero - Home
+    *******************************************/
+  /*#region*/
+  #hero ul {
+    font-size: 1.6em;
+    margin-left: 2em;
+    margin-top: 1em;
+  }
+
+  #actionbtn {
+    display: block;
+    width: 90%;
+    margin-top: 1.5em;
+    padding: 1rem;
+    background-color: var(--main-accent);
+    color: var(--primary-text);
+    font-weight: 800;
+    font-size: large;
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.5 Review & Add-on - Home   
+   *******************************************/
+  /*#region*/
+  .flex-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+  }
+
+  #add-ons,
+  #review {
+    margin-top: 0;
+    flex: 1 0 45%;
+  }
+
+  #review h2,
+  #add-ons h2 {
+    font-size: 1.4em;
+    margin-bottom: 2em;
+  }
+
+  #add-ons {
+    order: -1;
+  }
+
+  #review li {
+    font-size: 1.1em;
+  }
+
+  #add-ons {
+    width: 45%;
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.6 Vehicles grid - Classification view   
+     *******************************************/
+  /*#region*/
+  #inv-display {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+
+  #inv-display h2 {
+    font-size: 1rem;
+  }
+
+  #inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
+    display: grid;
+    border-radius: 10px;
+  }
+
+  #inv-display a {
+    height: 150px;
+  }
+
+  #inv-display img {
+    border-radius: 10px 10px;
+  }
+
+  #inv-display div {
+    width: 100%;
+    height: 100px;
+  }
+
+  /*#endregion*/
+  /*******************************************
+     3.7 Detail layout - Vehicle Detail view  
+    *******************************************/
+  /*#region*/
+
+
+  #detail #vehicle-display {
+    margin: 0 0 1rem;
+  }
+
+  #vehicle-display>div {
+    display: flex;
+  }
+
+  .imagePrice {
+    flex: 1 0 45%;
+    margin-right: 1rem;
+  }
+
+  #vehicle-display #mainImage {
+    width: auto;
+    object-fit: contain;
+  }
+
+  /*#endregion*/
+}
