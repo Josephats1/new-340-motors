@@ -19,7 +19,7 @@ validate.classificationRule = () => {
       .isAlpha()
       .withMessage("Provide a correct classification name."),
   ]
-}
+}   
 
 /* ******************************
  * Check and return error or continue to insert classification

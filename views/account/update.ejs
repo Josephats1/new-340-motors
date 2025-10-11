@@ -1,0 +1,42 @@
+<%# Unit 5, Assignment 5, Task 4 %>
+
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+ <form method="post" action="/account/update/">
+   <label for="account_firstname">First Name</label>
+   <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">
+   <label for="account_lastname">Last Name</label>
+   <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">
+   <label for="account_email">Email</label>
+   <input type="email" name="account_email" id="account_email" required value="<%= locals.account_email %>">
+   <input type="submit" value="Update">
+   <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+ </form>
+
+
+ <h2>Update Password</h2>
+ <form method="post" action="/account/password">
+   <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+   <p class="red">*note your original password will be changed.</p>
+   <label for="password">Password</label>
+   <input type="password" name="account_password" id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+   <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
+   <div id="pswdBtn">Show Password</div>
+   <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+   <input type="submit" value="Change Password">
+ </form>
+
+
+<script src="/js/script.js"></script>

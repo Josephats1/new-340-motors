@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -110,5 +112,64 @@ Util.buildSingleVehicleDisplay = async function (data) {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to check token validity
+* Unit 5, Login Process activity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          req.flash("notice", "Please log in")
+          res.clearCookie("jwt")
+          return res.redirect("/account/login")
+        }
+      res.locals.accountData = accountData
+      res.locals.loggedin = 1
+      next()
+      })
+  } else {
+    next()
+  }
+}
+
+/* ****************************************
+ *  Check Login
+ *  Unit 5, jwt authorize activity
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+/* ****************************************
+ * Assignment 5 task2
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  if(!res.locals.accountData)
+ {
+    return res.redirect("/account/login")
+    }
+  if (res.locals.accountData.account_type == "Employee" ||
+      res.locals.accountData.account_type == "Admin") 
+    {
+      next()
+    } 
+    else 
+    {
+      return res.redirect("/account/login")
+    }
+}
+
+
+
 
 module.exports = Util
