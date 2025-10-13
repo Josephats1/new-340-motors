@@ -105,4 +105,42 @@ async function updatePassword(hashedPassword, account_id) {
 }
 
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, checkExistingEmail }
+/* ****************************************
+ *  Update Profile Image| Week 6 personal project.Image upload
+ * *************************************** */
+async function updateProfileImage(account_id, filename) {
+  try {
+    const sql = `
+      UPDATE account
+      SET account_profile_image = $1
+      WHERE account_id = $2
+      RETURNING *;
+    `
+    const result = await pool.query(sql, [filename, account_id])
+    return result.rows[0]
+  } catch (error) {
+    console.error("Error updating profile image:", error)
+    throw error
+  }
+}
+
+async function updateProfileImage(account_id, filename) {
+  try {
+    const sql = `
+      UPDATE account
+      SET account_profile_image = $1
+      WHERE account_id = $2
+      RETURNING *;
+    `
+    const data = await pool.query(sql, [filename, account_id])
+    return data.rows[0]
+  } catch (error) {
+    console.error("Database error in updateProfileImage:", error)
+    throw error
+  }
+}
+
+
+
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, checkExistingEmail, updateProfileImage }

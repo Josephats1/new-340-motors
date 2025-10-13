@@ -38,5 +38,89 @@
    <input type="submit" value="Change Password">
  </form>
 
+<div class="profile-picture-section">
+    <h3>Profile Picture</h3>
+    
+    <div class="current-picture">
+        <% if (locals.accountData && locals.accountData.account_profile_image) { %>
+            <img src="/uploads/<%= locals.accountData.account_profile_image %>" 
+                 alt="Profile Picture" 
+                 class="profile-image">
+            <p>Current profile picture</p>
+        <% } else { %>
+            <div class="no-image">
+                <i class="fas fa-user-circle fa-5x"></i>
+                <p>No profile picture uploaded yet.</p>
+            </div>
+        <% } %>
+    </div>
 
+    <!-- Camera Capture Modal -->
+    <div id="cameraModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Take a Photo</h4>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <div class="camera-controls">
+                    <button id="captureBtn" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> Capture Photo
+                    </button>
+                    <button id="retakeBtn" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-redo"></i> Retake
+                    </button>
+                    <button id="usePhotoBtn" class="btn btn-success" style="display: none;">
+                        <i class="fas fa-check"></i> Use This Photo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Options -->
+    <div class="upload-options">
+        <div class="option-card" onclick="openFilePicker()">
+            <i class="fas fa-folder-open fa-3x"></i>
+            <h4>Choose from Files</h4>
+            <p>Select an image from your device</p>
+        </div>
+        
+        <div class="option-card" onclick="openCamera()">
+            <i class="fas fa-camera fa-3x"></i>
+            <h4>Take Photo</h4>
+            <p>Use your camera to take a new photo</p>
+        </div>
+    </div>
+
+    <!-- Hidden File Input -->
+    <form id="uploadForm" action="/account/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+        <input type="file" name="profile" id="profile" 
+               accept="image/jpeg, image/jpg, image/png, image/gif" 
+               class="form-control" style="display: none;">
+        <input type="hidden" name="cameraImage" id="cameraImage">
+    </form>
+
+    <div class="form-info">
+        <small class="form-text">Supported formats: JPG, JPEG, PNG, GIF. Max size: 2MB</small>
+    </div>
+</div>
+<div class="profile-picture-section">
+    <h3>Profile Picture</h3>
+    
+    <div class="current-picture">
+        <% if (locals.accountData && locals.accountData.account_profile_image) { %>
+            <img src="/uploads/<%= locals.accountData.account_profile_image %>" 
+                 alt="Profile Picture" 
+                 class="profile-image">
+            <p>Current profile picture</p>
+        <% } else { %>
+            <div class="no-image">
+                <i class="fas fa-user-circle fa-5x"></i>
+                <p>No profile picture uploaded yet.</p>
+            </div>
+        <% } %>
+    </divy: none;"> 
 <script src="/js/script.js"></script>

@@ -116,6 +116,11 @@ app.use(async (err, req, res, next) => {
 
 
 
+// Serve static files from public directory
+app.use(express.static('public'))
+
+
+
 
 /* ***********************
  * Local Server Information

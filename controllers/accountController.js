@@ -234,5 +234,66 @@ async function accountLogout(req, res) {
   return res.redirect("/")
 }
 
+//Update profile pic
+const path = require("path")
+const fs = require("fs")
+
+async function uploadProfilePicture(req, res) {
+    let nav = await utilities.getNav()
+    const account_id = res.locals.accountData.account_id
+
+    try {
+        console.log("Upload request received:", req.file) // Debug log
+
+        if (!req.file) {
+            req.flash("message warning", "Please select a valid image file to upload.")
+            return res.status(400).redirect("/account/update")
+        }
+
+        // Validate file exists in uploads directory
+        const filePath = path.join(__dirname, "../public/uploads", req.file.filename)
+        if (!fs.existsSync(filePath)) {
+            req.flash("message warning", "Uploaded file not found. Please try again.")
+            return res.status(400).redirect("/account/update")
+        }
+
+        // Get current user to check for existing image
+        const currentUser = await accountModel.getAccountById(account_id)
+        
+        // Delete old profile picture if exists
+        if (currentUser.account_profile_image) {
+            const oldImagePath = path.join(__dirname, "../public/uploads", currentUser.account_profile_image)
+            if (fs.existsSync(oldImagePath)) {
+                fs.unlinkSync(oldImagePath)
+                console.log("Deleted old profile image:", currentUser.account_profile_image)
+            }
+        }
+
+        // Update database with new filename
+        const updatedAccount = await accountModel.updateProfileImage(account_id, req.file.filename)
+        
+        if (!updatedAccount) {
+            throw new Error("Failed to update database")
+        }
+
+        console.log("Profile picture updated successfully:", req.file.filename)
+        req.flash("message success", "Profile picture updated successfully!")
+        res.redirect("/account/")
+        
+    } catch (error) {
+        console.error("Error uploading profile picture:", error)
+        
+        // Clean up uploaded file if database update failed
+        if (req.file && req.file.filename) {
+            const filePath = path.join(__dirname, "../public/uploads", req.file.filename)
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath)
+            }
+        }
+        
+        req.flash("message warning", "An error occurred while uploading. Please try again.")
+        res.redirect("/account/update")
+    }
+}
 
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, buildUpdate, processUpdate, processPassword, accountLogout }

@@ -1,3 +1,17 @@
+<div class="profile-display">
+    <% if (locals.accountData && locals.accountData.account_profile_image) { %>
+        <img src="/uploads/<%= locals.accountData.account_profile_image %>" 
+             alt="Profile Picture" 
+             class="profile-image-large">
+    <% } else { %>
+        <div class="no-profile-image">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    <% } %>
+    
+    <h3><%= locals.accountData.account_firstname %> <%= locals.accountData.account_lastname %></h3>
+    <p><%= locals.accountData.account_email %></p>
+</div>
 <%# Unit 1, Assignment 1 %>
 <h1>Welcome to CSE Motors!</h1>
 <%# Unit 4, Sessions & Messages activity %>
